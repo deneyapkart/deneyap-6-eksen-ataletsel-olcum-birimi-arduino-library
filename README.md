@@ -1,9 +1,9 @@
-# Deneyap 6 Dof IMU LSM6DSM Arduino Library
+# Deneyap 6 Dof IMU Arduino Library
 [FOR TURKISH VERSION](docs/README_tr.md) ![trflag](https://github.com/deneyapkart/deneyapkart-arduino-core/blob/master/docs/tr.png)
 
 ***** Add photo ****
 
-Arduino library for Deneyap 6 Dof IMU Sensor LSM6DSM
+Arduino library for Deneyap 6 Dof IMU Sensor
 
 ## :mag_right:Specifications 
 - `Product ID` **M02**, **mpv1.0**
@@ -18,7 +18,11 @@ Arduino library for Deneyap 6 Dof IMU Sensor LSM6DSM
 | 0x6A | address when LSM_ADR pad is shorted |
 
 ## :closed_book:Documentation
-Deneyap 6 Dof IMU Sensor LSM6DSM
+[Deneyap 6 Dof IMU](https://docs.deneyapkart.org/en/content/contentDetail/deneyap-6-eksen-ataletsel-olcum-birimi-m02)
+
+[Deneyap 6 Dof IMU Schematic](https://cdn.deneyapkart.org/media/upload/userFormUpload/ZodOFOwcCvlrXxKLKOxAyPc4BnMv7etf.pdf)
+
+[Deneyap 6 Dof IMU Mechanical Drawing](https://cdn.deneyapkart.org/media/upload/userFormUpload/gCSVq11Qq5B9B7ZM52hnGlqtmenEfRwU.pdf)
 
 [LSM6DSM-datasheet](https://www.st.com/resource/en/datasheet/lsm6dsm.pdf)
 
@@ -35,6 +39,8 @@ This Arduino library allows you to use Deneyap 6 Dof IMU LSM6DSM with I2C periph
 - `library.properties ` General library properties for the Arduino package manager
 
 ## Version History
+1.0.1 - library updated and added new a sketch
+
 1.0.0 - initial release
 
 ## :rocket:Hardware Connections

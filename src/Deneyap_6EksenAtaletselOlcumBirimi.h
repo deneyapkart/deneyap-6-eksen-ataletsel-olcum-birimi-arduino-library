@@ -2,10 +2,10 @@
 *****************************************************************************
 @file         Deneyap_6EksenAtaletselOlcumBirimi.h
 @mainpage     Deneyap 6 Dof IMU LSM6DSM Arduino library header file
-@version      v1.0.0
-@date         June 23, 2022
+@version      v1.0.1
+@date         June 25, 2023
 @brief        This file contains all function prototypes and macros
-              for Deneyap 6 Dof IMU LSM6DSM Arduino library
+              for Deneyap 6 Dof IMU Arduino library
 *****************************************************************************
 */
 
@@ -14,7 +14,7 @@
 
 #include <Wire.h>
 
-#define LSM6DSM_ADDRESS (0x6B)
+//#define LSM6DSM_ADDRESS (0x6B)
 #define WHO_AM_I_REG_VALUE (0x6A)
 
 // Return states
@@ -34,11 +34,14 @@ public:
     // LSM6DSMCore();
     ~LSM6DSMCore() = default;
 
-    status_t beginCore(void);
+    status_t beginCore(uint8_t address);
     status_t readRegisterRegion(uint8_t, uint8_t *, uint8_t);
     status_t readRegister(uint8_t, uint8_t *);
     status_t readRegisterInt16(uint8_t, int16_t *);
     status_t writeRegister(uint8_t, uint8_t);
+
+private:
+    uint8_t _address;
 };
 
 // Struct variables used as settings for calculations
@@ -85,7 +88,7 @@ public:
     LSM6DSM();
     ~LSM6DSM() = default;
     // Call to apply SensorSettings
-    status_t begin(SensorSettings *pSettingsYouWanted = NULL);
+    status_t begin(uint8_t address, SensorSettings *pSettingsYouWanted = NULL);
     // Returns the raw bits from the sensor cast as 16-bit signed integers
     int16_t readRawAccelX(void);
     int16_t readRawAccelY(void);

@@ -1,8 +1,8 @@
-# Deneyap 6 Eksen IMU LSM6DSM Arduino Kütüphanesi
+# Deneyap 6 Eksen Ataletsel Ölçüm Birimi  Arduino Kütüphanesi
 
 ***** Fotoğraf eklenecek ****
 
-Deneyap 6 Eksen Ataletsel Ölçüm Birimi LSM6DSM için Arduino kütüphanesidir.
+Deneyap 6 Eksen Ataletsel Ölçüm Birimi için Arduino kütüphanesidir.
 
 ## :mag_right:Özellikler 
 - `Ürün ID` **M02**, **mpv1.0**
@@ -17,7 +17,11 @@ Deneyap 6 Eksen Ataletsel Ölçüm Birimi LSM6DSM için Arduino kütüphanesidir
 | 0x6A | LSM_ADR kısa devre yapıldığındaki adres |
 
 ## :closed_book:Dokümanlar
-Deneyap 6 Eksen Ataletsel Ölçüm Birimi LSM6DSM
+[Deneyap 6 Eksen Ataletsel Ölçüm Birimi](https://docs.deneyapkart.org/en/content/contentDetail/deneyap-6-eksen-ataletsel-olcum-birimi-m02)
+
+[Deneyap 6 Eksen Ataletsel Ölçüm Birimi  Şematik](https://cdn.deneyapkart.org/media/upload/userFormUpload/ZodOFOwcCvlrXxKLKOxAyPc4BnMv7etf.pdf)
+
+[Deneyap 6 Eksen Ataletsel Ölçüm Birimi Teknik Çizim](https://cdn.deneyapkart.org/media/upload/userFormUpload/gCSVq11Qq5B9B7ZM52hnGlqtmenEfRwU.pdf)
 
 [LSM6DSM-datasheet](https://www.st.com/resource/en/datasheet/lsm6dsm.pdf)
 
@@ -34,6 +38,8 @@ Bu Arduino kütüphanesi Deneyap 6 Eksen Ataletsel Ölçüm Biriminin I2C çevre
 - `library.properties` Arduino yöneticisi için genel kütüphane özellikleri
 
 ## Sürüm Geçmişi
+1.0.1 - kütüphane güncellendi ve yeni bir örnek eklendi
+
 1.0.0 - ilk sürüm
 
 ## :rocket:Donanım Bağlantıları

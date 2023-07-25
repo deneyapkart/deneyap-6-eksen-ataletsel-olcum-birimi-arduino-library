@@ -3,9 +3,9 @@
 @file         Deneyap_6EksenAtaletselOlcumBirimi.cpp
 @mainpage     Deneyap 6 Dof IMU LSM6DSM Arduino library source file
 @maintainer   RFtek Electronics <techsupport@rftek.com.tr>
-@version      v1.0.0
-@date         June 23, 2022
-@brief        Includes functions to control Deneyap 6 Dof IMU LSM6DSM 
+@version      v1.0.1
+@date         June 27, 2023
+@brief        Includes functions to control Deneyap 6 Dof IMU
               Arduino library
 
 Library includes:
@@ -23,10 +23,10 @@ Library includes:
  * @param  None
  * @retval Return state (status_t)
  */
-status_t LSM6DSMCore::beginCore(void) {
+status_t LSM6DSMCore::beginCore(uint8_t address) {
     status_t returnError = IMU_SUCCESS;
     Wire.begin();
-
+    _address = address;
     // Spin for a few ms
     volatile uint8_t temp = 0;
     for (uint16_t i = 0; i < 10000; i++) {
@@ -53,13 +53,13 @@ status_t LSM6DSMCore::readRegisterRegion(uint8_t regAddress, uint8_t *outputPoin
     uint8_t i = 0;
     uint8_t c = 0;
 
-    Wire.beginTransmission((uint8_t)LSM6DSM_ADDRESS);
+    Wire.beginTransmission(_address);
     Wire.write((uint8_t)regAddress);
     if (Wire.endTransmission() != 0) {
         returnError = IMU_HW_ERROR;
     }
     else {
-        Wire.requestFrom((uint8_t)LSM6DSM_ADDRESS, (uint8_t)length);
+        Wire.requestFrom(_address, (uint8_t)length);
         while ((Wire.available()) && (i < length)) {                    // slave may send less than requested
             c = Wire.read(); // receive a byte as character
             *outputPointer = c;
@@ -79,12 +79,12 @@ status_t LSM6DSMCore::readRegister(uint8_t regAddress, uint8_t *outputPointer) {
     uint8_t result = 0;
     status_t returnError = IMU_SUCCESS;
 
-    Wire.beginTransmission((uint8_t)LSM6DSM_ADDRESS);
+    Wire.beginTransmission(_address);
     Wire.write((uint8_t)regAddress);
     if (Wire.endTransmission() != 0) {
         returnError = IMU_HW_ERROR;
     }
-    Wire.requestFrom((uint8_t)LSM6DSM_ADDRESS, (uint8_t)1);
+    Wire.requestFrom(_address, (uint8_t)1);
     while (Wire.available()) { // slave may send less than requested
         result = Wire.read(); // receive a byte as a proper uint8_t
     }
@@ -114,7 +114,7 @@ status_t LSM6DSMCore::readRegisterInt16(uint8_t regAddress, int16_t *outputPoint
 status_t LSM6DSMCore::writeRegister(uint8_t regAddress, uint8_t data) {
     status_t returnError = IMU_SUCCESS;
 
-    Wire.beginTransmission((uint8_t)LSM6DSM_ADDRESS);
+    Wire.beginTransmission(_address);
     Wire.write((uint8_t)regAddress);
     Wire.write((uint8_t)data);
     if (Wire.endTransmission() != 0) {
@@ -166,12 +166,12 @@ LSM6DSM::LSM6DSM() {
  * @param  Sensor settings
  * @retval Return state (status_t)
  */
-status_t LSM6DSM::begin(SensorSettings *pSettingsYouWanted) {
+status_t LSM6DSM::begin(uint8_t address, SensorSettings *pSettingsYouWanted) {
     // Check the settings structure values to determine how to setup the device
     uint8_t dataToWrite = 0; // Temporary variable
 
     // Begin the inherited core
-    status_t returnError = beginCore();
+    status_t returnError = beginCore(address);
     if (returnError != IMU_SUCCESS) {
         return returnError;
     }

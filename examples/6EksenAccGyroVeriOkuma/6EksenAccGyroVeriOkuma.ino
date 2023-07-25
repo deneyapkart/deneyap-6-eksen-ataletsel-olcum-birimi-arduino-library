@@ -1,16 +1,15 @@
 /*
- *   6 Eksen AccGyro Veri Okuma örneği,
+ *   6-Eksen AccGyro Veri Okuma örneği,
  *
  *   Bu örnekte temel konfigürasyon ayarları yapılmaktadır.
  *   Sensörden gelen İvmeölçerden(Acc) X,Y,Z eksen değerleri Dönüölçerden(Gyro) X,Y,Z eksen değerleri ve C ile F cinsinden sıcaklık değerlerini
- *   seri termianle yazdırmaktadır.
+ *   seri port ekranına yazdırmaktadır.
  *
  *   Bu algılayıcı I2C haberleşme protokolü ile çalışmaktadır.
  *
  *   Bu örnek Deneyap 6-Eksen Ataletsel Ölçüm Birimi ve Deneyap 9-Eksen Ataletsel Ölçüm Birimi için oluşturulmuştur
- *      ------> www.....com <------ //docs
+ *      ------> https://docs.deneyapkart.org/tr/content/contentDetail/deneyap-6-eksen-ataletsel-olcum-birimi-m02 <------
  *      ------> https://github.com/deneyapkart/deneyap-6-eksen-ataletsel-olcum-birimi-arduino-library <------ 
- *
 */
 #include <Deneyap_6EksenAtaletselOlcumBirimi.h>       // Deneyap_IvmeOlcerVeDonuOlcer.h kütüphanesi eklendi
 
@@ -18,11 +17,7 @@ LSM6DSM AccGyro;                                      // AccGyro icin Class tani
 
 void setup() {
     Serial.begin(115200);                             // Seri haberleşme başlatıldı
-    if (AccGyro.begin() != IMU_SUCCESS) {             // begin(slaveAdress) fonksiyonu ile cihazların haberleşmesi başlatıldı
-        delay(2500);
-        Serial.println("I2C bağlantısı başarısız ");  // I2C bağlantısı başarısız olursa seri terminale yazdırma
-        while (1);
-    }
+    AccGyro.begin(0x6B);                              // begin(slaveAdress) fonksiyonu ile cihazların haberleşmesi başlatılması
 }
 
 void loop() {
